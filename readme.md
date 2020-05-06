@@ -402,4 +402,99 @@ Grunt, Gulp e Webpack são exemplos de:
 
 ### Aula I - Como usar Pug em projetos
 
+#### O que é o Pug
+
+- É uma *template engine* de alta performance
+- Implementado em Javascript para Node.js e Browsers
+- Conhecido anteriormente como "Jade"
+- Pode ser integrado com Express
+- [Documentação do Pug](https://pugjs.org/api/getting-started.html)
+
+#### Prós de uso do Pug
+
+- Escrever mais HTML com menos código
+- Código parecido com parâgrafos, o que dá legibilidade do código e simplifica projetos com vários desenvolvedores
+- Não há fechamento de tags, é usado identação para identificar aninhamento de tags
+- É possível escrever Javscript dentro dos templates
+
+#### Contras de uso do Pug
+
+- Espaços em branco importam, um mínimo erro de identação pode trazer grandes problemas para seu código
+- Não é possível usar código HTML de qualquer lugar, é preciso converter para o Pug antes de usar
+
+#### Atividade prática - Como usar Pug em projetos
+
+- Clonar/baixar os arquivos do [repositório original](https://github.com/hmschreiner/pug-template)
+- Executar `npm install` para baixar as dependências
+- Executar `npm run build` para criar os arquivos html
+
 ### Aula II - Integrando Pug com Express
+
+- Uma *template engine* possibilita o uso de aruqivos de template estátio na sua aplicação
+- Em tempo de execução, variáveis dentro desse tempalte pode ser substituídas por valores reais
+- Transforma o template em HTML e manda para o *client*
+- Facilita o desenvolvimento de página HTML dinâmicas usando conteúdo estátio
+
+#### Atividade prática - Integrando Pug com Express
+
+- Clonar/baixar os arquivos do [repositório original](https://github.com/hmschreiner/pug-express)
+- Executar `npm install` para baixar as dependências
+- Executar `npm start` para rodar a aplicação
+
+#### Exercícios - Módulo III - Criação de templates com Pug
+
+Qual trecho de código é usado para informar a pasta dos templates do Pug ao Express?
+
+- app.set('views', './templates')
+
+Anteriormente o Pug era conhecido como:
+
+- Jade.
+
+A integração do Pug com o Express permite que:
+
+- Substituir, em tempo de execução, variáveis dentro dos templates por valores reais.
+
+O que é o Pug?
+
+- É uma template engine de alta performance implementado com JavaScript
+
+Fazendo a integração com o Pug, o Express é capaz de?
+
+- Transformar o template Pug em HTML e mandar para o client.
+
+Qual o resultado do seguinte comando usando a CLI do Pug:
+
+`pug templates/*.pug --pretty --out ./build`
+
+- Transforma todos os arquivos da pasta “templates” com a extensão .pug em HTML e salva os arquivos HTML na pasta “build” com indentação.
+
+Qual função é usada em uma rota no Express para renderizar um template Pug?
+
+- res.render()
+
+Leia as sentenças e assinale a alternativa correta sobre algumas das vantagens em relação ao uso do Pug.
+
+I - Não é necessário o fechamento das tags.
+
+II - É possível mesclar código HTML com Pug.
+
+III - Usar JavaScript dentro de um template Pug.
+
+- I e III estão corretas.
+
+Veja as sentenças abaixo e assinale a alternativa correta. São desvantagens em relação ao uso do Pug:
+
+I - Escrever menos HTML com mais código.
+
+II - Não é possível usar código HTML em um template Pug.
+
+III - Sua performance é baixa, o que torna a aplicação mais lenta.
+
+- Apenas II está correta.
+
+O seguinte código Pug irá gerar qual saída em HTML:
+
+`h1.header.title Minha Página`
+
+- `<h1 class=”header title”>Minha Página</h1>`
