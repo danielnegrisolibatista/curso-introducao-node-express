@@ -43,7 +43,7 @@ node index.js
 ```javascript
 // inicializando um projeto node
 npm init -y
-// instalando do express
+// instalando o express
 npm install express --save
 ```
 
@@ -208,7 +208,195 @@ Qual linguagem de programação é usada para desenvolver aplicações em Node.j
 
 ### Aula I - Criando uma ferramenta com CLI
 
+#### O que é uma CLI
+
+- Ferramenta que disponibiliza uma interface de linha de comando para executar tarefas no terminal
+- Normalmente são criadas através de *Shell Script*
+- Automatiza uma tarefa atavrés de uma aruqivo executável
+- Pode ser facilmente distruído em várias plataformas
+
+#### GUI x CLI
+
+Copiando um arquivo:
+
+##### GUI
+
+- Abrir o gerenciado de arquivos;
+- Navegar entre os diretórios até achar o desejado
+- Selecionar todos os arquivos que terminam com *.js*
+- Copiar os arquivos
+- Trocar de diretório no gerenciado de arquivos
+- Colar os arquivos
+
+##### CLI
+
+```javascript
+- cp *.js ~/Documentos/PastaDestino
+```
+
+#### Por que criar uma CLI em Node.js
+
+- A popularidade do Node.js se dá ao rico ecossistema de pacteos
+- Mais de 900.000 pacores registrados no NPM
+- CLIs podem ser facilmente distribuídas e consumidas em múltiplas plataformas
+- Explorar o ecossitema, incluido sua grande quantidade de pacotes focados em CLI
+
+#### CLIs em Node.js
+
+- npm
+- yarn
+- babel
+- grunt
+- gulp
+- webpack
+
+#### Atividade prática CLIs em Node.js
+
+- Criar uma CLI simples para procurar arquivos em um diretório
+- Instalar local para desenvolvimento e testes
+- Passo a passo para publicar a CLI no NPM
+
+```javascript
+// Criar uma CLI simples para procurar arquivos em um diretório
+
+// search-files-cli
+// criar um projeto node
+// npm init -y
+
+// criar o arquivo bin/search-files-cli
+
+#!/usr/bin/env node
+const fs = require('fs')
+const { join } = require('path')
+
+const fileName = process.argv.splice(2, process.argv.length -1).join()
+
+function searchFiles(filter, startPath = '.') {
+  const files = fs.readdirSync(startPath)
+
+  files.map(filePath => {
+    const fullFilePath = join(startPath, filePath);
+    const startFilePath = fs.lstatSync(fullFilePath);
+
+    if (startFilePath.isDirectory()) {
+      return searchFiles(filter, fullFilePath)
+    }
+
+    if (fullFilePath.indexOf(filter) !== -1) {
+      console.log(fullFilePath)
+    }
+  })
+}
+
+searchFiles(fileName)
+
+
+// ajustar o package.json
+{
+  "name": "search-files-cli",
+  "version": "1.0.0",
+  "description": "Exemplo de CLI para procurar arquivos em uma pasta",
+  "preferGlobal": true,
+  "bin": {
+    "search-files": "./bin/search-files-cli"
+  },
+  "files": [
+    "./bin"
+  ],
+  "keywords": [],
+  "author": "Daniel Negrisoli Batista",
+  "license": "MIT"
+}
+
+// Instalar local para desenvolvimento e testes
+// cria um link simbolico para que não precise ficar instalação a aplicação a cada modificação
+npm link
+
+// executar o comando para testar: search-files .json
+```
+
+Passo a passo para publicar a CLI no NPM
+
+- Cria uma conta no npm
+- Realizar login no npm localmente
+- Executa npm publish para enviar o pacote
+
 ### Aula II - Aprenda a trabalhar com Commander.js
+
+#### O que é Commander.js
+
+- Ferramenta completa para criação de CLIs em Node.js
+- Definição de comandos, parâmetros de opções e execução de ações
+- Descrição para cada comando e menu de ajuda com exemplos de uso
+
+#### Atividade prática com Commander.js
+
+- Criar uma CLI usando o Commander.js
+- Criar uma ferramenta que mostra o clima atual de uma cidade pelo nome
+- Usar a API do ClimaTempo
+  - Criar uma conta no ClimaTempo e gerar um token de acesso
+- Cópiar/Clonar o repositório original [node-clima-cli](https://github.com/hmschreiner/node-clima-cli)
+
+```javascript
+// Instalar local para desenvolvimento e testes
+// cria um link simbolico para que não precise ficar instalação a aplicação a cada modificação
+npm link
+
+// adiciona o token a aplicação
+clima.cmd porto alegre --token <token>  
+
+// executar o comando para testar: clima.cmd porto alegre
+```
+
+### Exercícios - Módulo II
+
+Qual é o comando usado para publicar sua CLI no NPM?
+
+- npm publish
+
+Qual o comando NPM para instalar a CLI localmente para testes?
+
+- npm link
+
+No arquivo package.json, em qual campo é informado o nome do comando que será usado pela CLI?
+
+- bin
+
+Em relação ao Commander.js:
+
+I - É executado no cliente.
+
+II - Ajuda no desenvolvimento de CLIs.
+
+III - Permite adicionar uma descrição para cada comando disponível.
+
+- II e III estão corretas.
+
+Qual opção é usada para adicionar um comando no Commander.js?
+
+- .command(‘...’)
+
+O que é uma CLI?
+
+- Interface de linha de comando para executar tarefas no terminal.
+
+Como adicionar parâmetros em um comando no terminal?
+
+- comando --nome-parametro valor
+
+Em relação às CLIs:
+
+I - Podem ser distribuídas facilmente.
+
+II - Só funcionam em ambientes Unix.
+
+III - Podem ser instaladas globalmente no sistema operacional.
+
+- I e III estão corretas.
+
+Grunt, Gulp e Webpack são exemplos de:
+
+- CLIs em Node.
 
 ## Módulo III - Criação de templates com Pug
 
