@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/danielnegrisolibatista/curso-introducao-node-express#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.3"
   }
 }
